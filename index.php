@@ -49,7 +49,5 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
           $sender = $message['sender']['id'];
       }
     }
+    send($sender, "Привіт!");
 }
-
-
-send($sender, "Привіт!");
