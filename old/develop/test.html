@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script>
+        var token = "EAAXBJEfVHnoBAOD8cMtwn4FdRcmZACcMhtsrZCUhkC9436Ti8bFA2KlZAmnbNmEhI5a8qWktdviY1ojVcOrlxJxg5IAQtR2ybSGaoXFYbZC7RKWoZCpdNtIPJHM8gtbgJm9T4Qm2K5X7qrxxbdH2P18edZAsRhj1SZCIsuKI0VZCUwZDZD";
+        $.post( "https://graph.facebook.com/v2.6/me/messages?access_token=" + token,
+                {
+                    "recipient":{
+                        "id":"862819397177312"
+                    },
+                    "message":{
+                        "text":"hello, world!"
+                    }
+                })
+                .done(function( data ) {
+                    alert( "Data Loaded: " + data );
+                });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
