@@ -68,20 +68,20 @@ function checkCommand($command) {
             ]);
             break;
         case "getFintech" :
-            send($sender, "Your link (digest)");
+            send($sender, "Дякую за вибір, тримай!
+Сподіваюсь, тобі буде цікаво)
+https://goo.gl/BWPf7j");
             break;
         case "capital" :
             send($sender, "Your link (magazine capital)");
             break;
         case "futureFinance" :
-            send($sender, "Your link (magazine future finance)");
+            send($sender, "Дякую за вибір, тримай!
+Сподіваюсь, тобі буде цікаво)
+https://goo.gl/KJ0ePA");
             break;
         case "sendRedactor" :
-            send($sender, "go to Kate");
-            break;
-        case "get":
-            get();
-            //$bot->send(new \Messages\ImageMessage($sender, 'https://botscheglova.tasoft.io/files/Fintech-digest.pdf'));
+            send($sender, "Дякую за вибір! http://m.me/catherine.shcheglova");
             break;
         default:
             send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
