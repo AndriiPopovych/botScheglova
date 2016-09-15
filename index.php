@@ -52,9 +52,38 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
           $sender = $message['sender']['id'];
       }
     }
+
     send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
         ["Свіжий номер журналу ", "getMagazine"],
         ["Фінтех-дайджест", "getFintech"],
         ["Запитання редактору", "sendRedactor"]
     ]);
+}
+
+
+function findCommand($command) {
+    global $bot;
+    global $sender;
+
+    switch ($command) {
+        case "getMagazine" :
+            send($sender, "Раджу почитати два номера на вибір ", [
+                ["Репутаційний капітал ринку", "capital"],
+                ["Майбутнє фінансів", "futureFinance"]
+            ]);
+            break;
+        case "getFintech" :
+            send($sender, "Your link (digest)");
+            break;
+        case "capital" :
+            send($sender, "Your link (magazine capital)");
+            break;
+        case "futureFinance" :
+            send($sender, "Your link (magazine future finance)");
+            break;
+        case "sendRedactor" :
+            send($sender, "go to Kate");
+            break;
+    }
+
 }
