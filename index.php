@@ -71,7 +71,7 @@ function checkCommand($command) {
                 [
                     'elements' => [
                         new MessageElement("Репутаційний капітал ринку", "bla bla bla", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
-                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "")
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/KJ0ePA")
                         ]),
 
                         new MessageElement("Майбутнє фінансів", "bla bla bla", "http://www.livescience.com/images/i/000/077/669/original/cat-eyes.jpg?interpolation=lanczos-none&fit=inside%7C660:*", [
