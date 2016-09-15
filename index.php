@@ -83,6 +83,29 @@ https://goo.gl/KJ0ePA");
         case "sendRedactor" :
             send($sender, "Дякую за вибір! http://m.me/catherine.shcheglova");
             break;
+        case "test":
+            send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить");
+            $bot->send(new StructuredMessage($message['sender']['id'],
+                StructuredMessage::TYPE_GENERIC,
+                [
+                    'elements' => [
+                        new MessageElement("Свіжий номер журналу", "Just read this", "", [
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Прочитати')
+                        ]),
+
+                        new MessageElement("Фінтех-дайджест", "Read!!!", "", [
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'First button'),
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Second button')
+                        ]),
+
+                        new MessageElement("Запитання редактору", "Напиши редактор", "", [
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'First button'),
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Second button')
+                        ])
+                    ]
+                ]
+            ));
+            break;
         default:
             send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
                 ["Свіжий номер журналу ", "getMagazine"],
