@@ -62,10 +62,24 @@ function checkCommand($command) {
 
     switch ($command) {
         case "getMagazine" :
-            send($sender, "Раджу почитати два номера на вибір ", [
-                ["Репутаційний капітал ринку", "capital"],
-                ["Майбутнє фінансів", "futureFinance"]
-            ]);
+            // send($sender, "Раджу почитати два номера на вибір ", [
+            //     ["Репутаційний капітал ринку", "capital"],
+            //     ["Майбутнє фінансів", "futureFinance"]
+            // ]);
+            $bot->send(new StructuredMessage($sender,
+                StructuredMessage::TYPE_GENERIC,
+                [
+                    'elements' => [
+                        new MessageElement("Репутаційний капітал ринку", "bla bla bla", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "")
+                        ]),
+
+                        new MessageElement("Майбутнє фінансів", "bla bla bla", "http://www.livescience.com/images/i/000/077/669/original/cat-eyes.jpg?interpolation=lanczos-none&fit=inside%7C660:*", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/KJ0ePA")
+                        ])
+                    ]
+                ]
+            ));
             break;
         case "getFintech" :
             send($sender, "Дякую за вибір, тримай!
@@ -89,7 +103,7 @@ https://goo.gl/KJ0ePA");
                 StructuredMessage::TYPE_GENERIC,
                 [
                     'elements' => [
-                        new MessageElement("Свіжий номер журналу", "Just read this", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
+                        new MessageElement("Свіжий номер журналу", "Хочеш дізнатися новинки з фінтеху? Обирай скоріше номер.", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
                             new MessageButton(MessageButton::TYPE_POSTBACK, 'Обрати номер', "getMagazine")
                         ]),
 
@@ -98,7 +112,7 @@ https://goo.gl/KJ0ePA");
                         ]),
 
                         new MessageElement("Запитання редактору", "В чаті з головним редактором ви зможете задати будь яке запитання.", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRp74GKe9xsjuv3l4XYGS8adw5IRtreOUVcfB112PZ1DFkfUzRVYw", [
-                            new MessageButton(MessageButton::TYPE_WEB, '', "http://m.me/catherine.shcheglova"),
+                            new MessageButton(MessageButton::TYPE_WEB, "Зв’язатися з редактором", "http://m.me/catherine.shcheglova"),
                         ])
                     ]
                 ]
