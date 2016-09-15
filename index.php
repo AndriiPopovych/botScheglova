@@ -79,6 +79,10 @@ function checkCommand($command) {
         case "sendRedactor" :
             send($sender, "go to Kate");
             break;
+        case "get":
+            get();
+            //$bot->send(new \Messages\ImageMessage($sender, 'https://botscheglova.tasoft.io/files/Fintech-digest.pdf'));
+            break;
         default:
             send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
                 ["Свіжий номер журналу ", "getMagazine"],
@@ -87,5 +91,47 @@ function checkCommand($command) {
             ]);
             break;
     }
+
+}
+
+
+function get() {
+    global $sender;
+    $curl = curl_init();
+
+    $header = [
+    ];
+    $header[] = "Content-Type: application/json";
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=' . TOKEN,
+        CURLOPT_POST => 1
+        ));
+    $header = [
+    ];
+    $header[] = "Content-Type: application/json";
+    $dataJSON = '{
+  "recipient":{
+    "id":"'.$sender.'"
+  },
+  "message":{
+    "attachment":{
+      "type":"file",
+      "payload":{
+        "url":"https://botscheglova.tasoft.io/files/Fintech-digest.pdf"
+      }
+    }
+  }
+}';
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
+        http_build_query(json_decode($dataJSON)));
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+    // Send the request & save response to $resp
+    $resp = curl_exec($curl);
+
+    $response = curl_getinfo($curl);
+
+    // Close request to clear up some resources
+    curl_close($curl);
 
 }
