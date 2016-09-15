@@ -1,5 +1,15 @@
 <?php
 
+
+use Messages\Message;
+use Messages\MessageButton;
+use Messages\StructuredMessage;
+use Messages\MessageElement;
+use Messages\MessageReceiptElement;
+use Messages\Address;
+use Messages\Summary;
+use Messages\Adjustment;
+
 function send($id, $text, $buttons = [])
 {
     global $bot;

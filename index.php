@@ -12,10 +12,11 @@ use Messages\Address;
 use Messages\Summary;
 use Messages\Adjustment;
 
-require "functions.php";
 
 
 $bot = new FbBotApp(TOKEN);
+
+require "functions.php";
 
 if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_REQUEST['hub_verify_token'] == VERIFY_TOKEN) {
     // Webhook setup request
