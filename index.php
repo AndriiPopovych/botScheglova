@@ -23,6 +23,8 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
     echo $_REQUEST['hub_challenge'];
     die();
 } else {
+    $data = json_decode(file_get_contents("php://input"), true);
+
     if (!empty($data['entry'][0]['messaging'])) {
       foreach ($data['entry'][0]['messaging'] as $message) {
           // Skipping delivery messages
@@ -50,5 +52,9 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
           $sender = $message['sender']['id'];
       }
     }
-    send($sender, "Привіт!");
+    send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
+        ["Свіжий номер журналу ", "getMagazine"],
+        ["Фінтех-дайджест", "getFintech"],
+        ["Запитання редактору", "sendRedactor"]
+    ]);
 }
