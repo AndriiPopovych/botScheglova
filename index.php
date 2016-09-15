@@ -50,18 +50,13 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
               die();
           }
           $sender = $message['sender']['id'];
+          checkCommand($command);
       }
     }
-
-    send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
-        ["Свіжий номер журналу ", "getMagazine"],
-        ["Фінтех-дайджест", "getFintech"],
-        ["Запитання редактору", "sendRedactor"]
-    ]);
 }
 
 
-function findCommand($command) {
+function checkCommand($command) {
     global $bot;
     global $sender;
 
@@ -83,6 +78,13 @@ function findCommand($command) {
             break;
         case "sendRedactor" :
             send($sender, "go to Kate");
+            break;
+        default:
+            send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
+                ["Свіжий номер журналу ", "getMagazine"],
+                ["Фінтех-дайджест", "getFintech"],
+                ["Запитання редактору", "sendRedactor"]
+            ]);
             break;
     }
 
