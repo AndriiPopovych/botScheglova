@@ -85,22 +85,20 @@ https://goo.gl/KJ0ePA");
             break;
         case "test":
             send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить");
-            $bot->send(new StructuredMessage($message['sender']['id'],
+            $bot->send(new StructuredMessage($sender,
                 StructuredMessage::TYPE_GENERIC,
                 [
                     'elements' => [
-                        new MessageElement("Свіжий номер журналу", "Just read this", "", [
-                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Прочитати')
+                        new MessageElement("Свіжий номер журналу", "Just read this", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
+                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Обрати номер', "getMagazine")
                         ]),
 
-                        new MessageElement("Фінтех-дайджест", "Read!!!", "", [
-                            new MessageButton(MessageButton::TYPE_POSTBACK, 'First button'),
-                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Second button')
+                        new MessageElement("Фінтех-дайджест", "Read!!!", "http://www.livescience.com/images/i/000/077/669/original/cat-eyes.jpg?interpolation=lanczos-none&fit=inside%7C660:*", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/BWPf7j")
                         ]),
 
-                        new MessageElement("Запитання редактору", "Напиши редактор", "", [
-                            new MessageButton(MessageButton::TYPE_POSTBACK, 'First button'),
-                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Second button')
+                        new MessageElement("Запитання редактору", "В чаті з головним редактором ви зможете задати будь яке запитання.", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRp74GKe9xsjuv3l4XYGS8adw5IRtreOUVcfB112PZ1DFkfUzRVYw", [
+                            new MessageButton(MessageButton::TYPE_WEB, '', "http://m.me/catherine.shcheglova"),
                         ])
                     ]
                 ]
