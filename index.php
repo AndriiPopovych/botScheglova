@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require "config.php";
 
@@ -70,17 +70,67 @@ function checkCommand($command) {
                 StructuredMessage::TYPE_GENERIC,
                 [
                     'elements' => [
-                        new MessageElement("Репутаційний капітал ринку", "bla bla bla", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
+
+
+			new MessageElement("Цифрова економіка та фінтех","Цифрова трансформація в Україні та світі", "http://botscheglova.tasoft.io/files/0.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "http://botscheglova.tasoft.io/files/Future_spreads-Dec%202016.pdf")
+                        ]),
+			new MessageElement("#3-4 Листопад/ грудень","Найголовніші новини в Україні та світі", "http://botscheglova.tasoft.io/files/digest123.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/XyBkav")
+                        ]),
+			new MessageElement("Фінтех в Україні", "Мапа ринку та ключові гравці і тренди", "http://botscheglova.tasoft.io/files/new.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/fMBuwT")
+                        ]),
+                       
+			new MessageElement("#2 Вересень/ Жовтень","Найголовніші новини в Україні та світі", "http://botscheglova.tasoft.io/files/baner.jpg", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/bHNsnb")
+                        ]),
+                        new MessageElement("Майбутнє фінансів у світі", "Глобальні фінтех-тренди", "http://botscheglova.tasoft.io/files/Fintech-magazine.png", [
                             new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/KJ0ePA")
                         ]),
-
-                        new MessageElement("Майбутнє фінансів", "bla bla bla", "http://www.livescience.com/images/i/000/077/669/original/cat-eyes.jpg?interpolation=lanczos-none&fit=inside%7C660:*", [
-                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/KJ0ePA")
+                        new MessageElement("#1 Серпень/Вересень", "Найголовніші новини в Україні та світі", "http://botscheglova.tasoft.io/files/baner1.jpg", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/BWPf7j")
+                        ]),
+                        new MessageElement("Екосистема фінтеху в Україні", "Мапа ринку", "http://botscheglova.tasoft.io/files/ecomaps.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/uNMikV")
+                        ])
+                        /*new MessageElement("Репутаційний капітал ринку", "Чому його важливо створювати", "http://botscheglova.tasoft.io/files/maybutne.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/T4OObv")
+                        ]),*/
+                        
+                    ]
+                ]
+            ));
+            break;	
+	case "getPresentation" :
+            $bot->send(new StructuredMessage($sender,
+                StructuredMessage::TYPE_GENERIC,
+                [
+                    'elements' => [
+                        new MessageElement("ТОП-5 принципів", "Трансформації фінансового сектору", "http://botscheglova.tasoft.io/files/top5.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/ayuA2H")
+                        ]),
+                        new MessageElement("ТОП-10 іншуртех-трендів", "Ключові тренди галузі на 2017 рік", "http://botscheglova.tasoft.io/files/top10.png", [
+                            new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/xk685u")
                         ])
                     ]
                 ]
             ));
             break;
+        /*case "getDigest" :
+            // send($sender, "Раджу почитати два ", [
+            //     ["Репутаційний капітал ринку", "capital"],
+            //     ["Майбутнє фінансів", "futureFinance"]
+            // ]);
+            $bot->send(new StructuredMessage($sender,
+                StructuredMessage::TYPE_GENERIC,
+                [
+                    'elements' => [
+                        
+                    ]
+                ]
+            ));
+            break;*/
         case "getFintech" :
             send($sender, "Дякую за вибір, тримай!
 Сподіваюсь, тобі буде цікаво)
@@ -100,7 +150,22 @@ https://goo.gl/KJ0ePA");
         case "test":
             hello();
             break;
+        case "endYes":
+            sendMenu($bot, $sender);
+            break;
+        case "endNo":
+		send($sender, "Дякуємо, що звернулись)");
+            break;
         default:
+$command = mb_strtolower($command);
+            if (preg_match("/спасибо/Uisu", $command) || preg_match("/дякую/Uisu", $command)) {
+              send($sender, "Чи можу я ще чимось допомогти?", [
+                 ["Так", "endYes"],
+                 ["Ні", "endNo"]
+             ]);
+              //send($sender, "будь ласка)");
+              break;
+            }
             hello();
             // send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить", [
             //     ["Свіжий номер журналу ", "getMagazine"],
@@ -116,20 +181,38 @@ function hello() {
     global $sender;
     global $bot;
     send($sender, "Привіт, мене звати Джен! Обери, що тебе цікавить");
-    $bot->send(new StructuredMessage($sender,
+    // $bot->send(new StructuredMessage($sender,
+    //     StructuredMessage::TYPE_GENERIC,
+    //     [
+    //         'elements' => [
+    //             new MessageElement("Свіжий номер журналу", "Маєш декілька номерів на вибір", "http://botscheglova.tasoft.io/files/magazine.jpg", [
+    //                 new MessageButton(MessageButton::TYPE_POSTBACK, 'Обрати номер', "getMagazine")
+    //             ]),
+
+    //             new MessageElement("Фінтех-дайджест", "Новини в Україні та світі", "http://botscheglova.tasoft.io/files/digest_3.png", [
+    //                 //new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/BWPf7j")
+			//new MessageButton(MessageButton::TYPE_POSTBACK, 'Обрати номер', "getDigest")
+    //             ]),
+
+    //             new MessageElement("Запитання редактору", "В чаті з головним редактором ви зможете задати будь яке запитання", "http://botscheglova.tasoft.io/files/Brand.png", [
+    //                 new MessageButton(MessageButton::TYPE_WEB, "Зв’язатися ", "http://m.me/catherine.shcheglova"),
+    //             ])
+    //         ]
+    //     ]
+    // ));
+    sendMenu($bot, $sender);
+}
+
+function sendMenu($bot, $sender) {
+	$bot->send(new StructuredMessage($sender,
         StructuredMessage::TYPE_GENERIC,
         [
             'elements' => [
-                new MessageElement("Свіжий номер журналу", "Хочеш дізнатися новинки з фінтеху? Обирай скоріше номер.", "http://cbsnews3.cbsistatic.com/hub/i/r/2016/03/23/38e32f54-b910-4612-8852-be9e0fbdbf73/thumbnail/620x350/440a1273973991f75a0ac768f554e37c/cat-istock.jpg", [
-                    new MessageButton(MessageButton::TYPE_POSTBACK, 'Обрати номер', "getMagazine")
-                ]),
-
-                new MessageElement("Фінтех-дайджест", "Read!!!", "http://www.livescience.com/images/i/000/077/669/original/cat-eyes.jpg?interpolation=lanczos-none&fit=inside%7C660:*", [
-                    new MessageButton(MessageButton::TYPE_WEB, 'Переглянути', "https://goo.gl/BWPf7j")
-                ]),
-
-                new MessageElement("Запитання редактору", "В чаті з головним редактором ви зможете задати будь яке запитання.", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRp74GKe9xsjuv3l4XYGS8adw5IRtreOUVcfB112PZ1DFkfUzRVYw", [
-                    new MessageButton(MessageButton::TYPE_WEB, "Зв’язатися з редактором", "http://m.me/catherine.shcheglova"),
+                new MessageElement("Official Future bot ", "", "http://botscheglova.tasoft.io/files/Brand.png", [
+                    new MessageButton(MessageButton::TYPE_POSTBACK, 'Свіжий журнал / дайджест', "getMagazine"),
+                    new MessageButton(MessageButton::TYPE_POSTBACK, 'Презентації', "getPresentation"),
+                   // new MessageButton(MessageButton::TYPE_WEB, 'Фінтех-дайджест', "https://goo.gl/BWPf7j"),
+                    new MessageButton(MessageButton::TYPE_WEB, 'Запитання редактору', "http://m.me/catherine.shcheglova")
                 ])
             ]
         ]
